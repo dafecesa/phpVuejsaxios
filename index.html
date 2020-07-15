@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Php-Vuejs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    
+    <div id="app">
+        <button @click="nuevoUsuario=true">Nuevo</button>
+<table>
+    <thead>
+        <th>ID</th><th>NOMBRE</th><TH>ACCION</TH>
+    </thead>
+    <TBody>
+        <td>1</td>
+        <td>2</td>
+        <td>
+            <button @click="editarUsuario=true"> EDITAR</button>
+            <button @click="eliminarUsuario=true"> ELIMINAR</button>
+            
+        </td>
+    </TBody>
+</table>
+
+        <div class="contenedor" v-if="nuevoUsuario">
+            <div class="modal">
+                <div class="header">
+                    <button class="close" @click="nuevoUsuario=false" >X</button>
+                    <h1>Nuevo</h1>
+
+                </div>
+                <div class="contenido">
+                    contenido
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="contenedor" v-if="editarUsuario">
+            <div class="modal">
+                <div class="header">
+                    <button class="close" @click="editarUsuario=false" >X</button>
+                    <h1>Editar</h1>
+
+                </div>
+                <div class="contenido">
+                    contenido
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="contenedor" v-if="eliminarUsuario">
+            <div class="modal">
+                <div class="header">
+                    <button class="close" @click="eliminarUsuario=false" >X</button>
+                    <h1>Eliminar</h1>
+
+                </div>
+                <div class="contenido">
+                    contenido
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    
+
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            nuevoUsuario:false,
+            editarUsuario:false,
+            eliminarUsuario:false
+        }
+    })
+</script>
+
+</body>
+</html>
