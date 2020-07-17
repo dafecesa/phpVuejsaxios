@@ -14,16 +14,21 @@
         <button @click="nuevoUsuario=true">Nuevo</button>
 <table>
     <thead>
-        <th>ID</th><th>NOMBRE</th><TH>ACCION</TH>
+        <th>ID</th><th>Codigo</th><th>NOMBRE</th><th>Descripcion</th><th>Precio</th><th>ACCION</th>
     </thead>
     <TBody>
-        <td>1</td>
-        <td>2</td>
+     <tr v-for="product in product">
+        <td>{{product.PRODUCT_ID}}</td>
+        <td>{{product.CODE}}</td>
+        <td>{{product.NAME}}</td>
+        <td>{{product.DESCRIPTION}}</td>
+        <td>{{product.PRICE}}</td>
         <td>
             <button @click="editarUsuario=true"> EDITAR</button>
             <button @click="eliminarUsuario=true"> ELIMINAR</button>
             
         </td>
+    </tr>
     </TBody>
 </table>
 
@@ -85,7 +90,19 @@
         data:{
             nuevoUsuario:false,
             editarUsuario:false,
-            eliminarUsuario:false
+            eliminarUsuario:false,
+            product:[]
+        },
+        mounted:function(){
+            this.mostrarProduct()   
+        },
+        methods:{
+            mostrarProduct:function(){
+                axios.get("http://localhost/vuejs-php/api.php?accion=mostrar")
+                .then(function(response) {
+                    app.product=response.data.product                    
+                })
+            }
         }
     })
 </script>
