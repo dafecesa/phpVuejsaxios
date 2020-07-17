@@ -1,13 +1,14 @@
 <?php
 class ApptivaDB{
-    private $host   = "";
-    private $user    = "";
+    private $host   = "localhost";
+    private $user    = "root";
     private $pass = "";
-    private $db     =   "";
+    private $db     =  "productos";
     public $conexion;
+    
 
-    public function_construct(){
-        $this -> conexion = new mysqli($this->$host,$this->$user,$this->$pass,$this->$db)
+    public function __construct(){
+        $this -> conexion = new mysqli($this->host,$this->user,$this->pass,$this->db)
         or die(mysql_error());
         $this->conexion->set_charset("utf8");
     }
@@ -37,15 +38,12 @@ class ApptivaDB{
     }
 
     public function buscar($tabla, $condicion){
-        $resultado  =   $this->conexion->query("SELECT * FROM $tabla FROM $condicion") 
+        $resultado  =   $this->conexion->query("SELECT * FROM $tabla WHERE $condicion") 
         or die($this->conexion->error);
         if ($resultado) 
-            return true;
+            return $resultado->fetch_all(MYSQLI_ASSOC);
         return false;        
     }
-
-
-
 }
 
 
